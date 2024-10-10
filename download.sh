@@ -30,6 +30,9 @@ MANIFEST_URL="https://registry.ollama.ai/v2/library/${IMAGE}/manifests/${TAG}"
 # Fetch the manifest JSON
 manifest_json=$(curl -s "$MANIFEST_URL")
 
+# Save the manifest JSON to a file
+echo "$manifest_json" > manifest
+
 # Check if the manifest JSON is empty or contains an error
 if [ -z "$manifest_json" ] || echo "$manifest_json" | grep -q '"errors":'; then
     echo "Failed to fetch the manifest for ${IMAGE}:${TAG}"
